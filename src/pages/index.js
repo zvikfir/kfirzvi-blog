@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 
@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => (
       {data.allStrapiArticle.edges.map(document => (
         <li key={document.node.id}>
           <h2>
-            <Link to={`/${document.node.Title}`}>{document.node.Title}</Link>
+            <Link to={`/${document.node.title}`}>{document.node.title}</Link>
           </h2>
         </li>
       ))}
@@ -31,8 +31,8 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          Title
-          Content
+          title
+          content
         }
       }
     }
