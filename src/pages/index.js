@@ -1,25 +1,29 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import "../assets/css/main.scss"
 
 import Layout from "../components/layout"
+import { Card, Container, Row } from "react-bootstrap"
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-
-    <ul>
-      {data.allStrapiArticle.edges.map(document => (
-        <li key={document.node.id}>
-          <h2>
-            <Link to={`/${document.node.title}`}>{document.node.title}</Link>
-          </h2>
-        </li>
-      ))}
-    </ul>
-
-    <Link to="/page-2/">Go to page 2</Link>
+    <Container className="d-flex flex-row justify-content-around flex-wrap flex-fill">
+        {data.allStrapiArticle.edges.map(document => (
+          <Card className="article my-3 shadow">
+            <Card.Body>
+              <Card.Title>
+                <Link
+                  to={`/article/${document.node.strapiId}`}
+                  title={document.node.title}
+                >
+                  {document.node.title}
+                </Link>
+              </Card.Title>
+              <Card.Text>{document.node.intro}</Card.Text>
+            </Card.Body>
+          </Card>
+        ))}
+    </Container>
   </Layout>
 )
 
@@ -30,8 +34,9 @@ export const pageQuery = graphql`
     allStrapiArticle {
       edges {
         node {
-          id
+          strapiId
           title
+          intro
           content
         }
       }
