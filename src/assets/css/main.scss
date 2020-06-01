@@ -12,7 +12,6 @@ body {
 main,
 header {
   width: 100%;
-  display: flex;
 }
 
 #layout {
@@ -20,10 +19,16 @@ header {
 }
 
 .article {
-  width: 30%;
-  height: 400px;
+  // width: 30%;
+  height: 350px;
 }
 
 .header-jumbo {
   background-color: transparent;
+}
+
+code, pre {
+  direction: ltr;
+  text-align: left;
+  background-color: rgb(241, 241, 241);
 }

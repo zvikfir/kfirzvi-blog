@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from '../components/layout';
+import Layout from "../components/layout"
+import ReactMarkdown from "react-markdown"
 
 export const query = graphql`
   query ArticleQuery($id: Int!) {
@@ -17,9 +18,12 @@ const Article = ({ data }) => {
 
   return (
     <Layout>
-      <p>{article.content}</p>
+      {/* <ReactMarkdown source={article.content} unwrapDisallowed={true} disallowedTypes={['paragraph']}/> */}
+      <ReactMarkdown source={article.content} />
+
+      {/* <p>{article.content}</p> */}
     </Layout>
-  );
+  )
 }
 
 export default Article

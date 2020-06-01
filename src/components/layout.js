@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <Container id="layout" className="d-flex flex-column">
+    <Container id="layout">
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
       <footer>
