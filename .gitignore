@@ -73,3 +73,5 @@ package-lock.json
 .netlify
 
 yarn.lock
+
+reduxcache*

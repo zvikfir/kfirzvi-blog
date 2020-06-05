@@ -20,9 +20,20 @@ header {
 
 .article {
   // width: 30%;
-  height: 350px;
+  min-height: 300px;
+  border-radius: 10px;
+
+  a {
+    color: black;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+  }
 }
 
 .header-jumbo {
   background-color: transparent;
 }
+

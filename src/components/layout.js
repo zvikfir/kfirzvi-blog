@@ -20,10 +20,17 @@ const Layout = ({ children }) => {
     <Container id="layout">
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
+      <footer className="text-center my-3">
+        ©
+        {` `}
+      כל הזכויות שמורות 
+      {` `}
+      {new Date().getFullYear()},
+        נבנה עם
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
+        {` `}
+        ועם <a href="https://strapi.io/">Strapi</a>
       </footer>
     </Container>
   )
