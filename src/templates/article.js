@@ -57,6 +57,7 @@ const Article = ({ data }) => {
             <ArticleSubtitle article={article} />
           </div>
         </Card.Subtitle>
+        <hr />
         <Card.Body>
           <ReactMarkdown
             source={article.content}
