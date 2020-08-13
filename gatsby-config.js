@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `לגעת בקוד`,
+    title: ``,
     // description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     // author: `@gatsbyjs`,
   },
@@ -14,13 +14,17 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-strapi",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        apiURL: process.env.DEPLOY_URL
-          ? "https://kfirzvi-cms.herokuapp.com"
-          : "http://localhost:1337",
-        contentTypes: ["article", "user"],
-        queryLimit: 1000,
+        name: `markdown-pages`,
+        path: `${__dirname}/src/markdown-pages`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown-pages`,
+        path: `${__dirname}/src/markdown-pages/assets/images`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -38,6 +42,40 @@ module.exports = {
       },
     },
     'gatsby-plugin-sass',
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: "Table of Contents",
+              fromHeading: 1,
+              toHeading: 2
+            },
+          },
+          `gatsby-remark-autolink-headers`,
+          "gatsby-remark-embed-video",
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 400,
+            },
+          },
+          `gatsby-remark-mathjax`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true,
+            }
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

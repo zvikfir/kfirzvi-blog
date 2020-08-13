@@ -1,36 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import { Container, Row } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 
 import Header from "./header"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <Container id="layout">
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header />
       <main>{children}</main>
       <footer className="text-center my-3">
-        ©
+        All rights reserved {new Date().getFullYear()} ©, Built with
         {` `}
-      כל הזכויות שמורות 
-      {` `}
-      {new Date().getFullYear()},
-        נבנה עם
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-        {` `}
-        ועם <a href="https://strapi.io/">Strapi</a>
+        <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener noreferrer">Gatsby</a>
       </footer>
     </Container>
   )

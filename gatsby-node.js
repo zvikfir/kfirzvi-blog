@@ -1,37 +1,37 @@
 const slugify = require("slugify");
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-  const result = await graphql(
-    `
-        {
-          articles: allStrapiArticle {
-            edges {
-              node {
-                strapiId
-                title
-              }
+  const { createPage } = actions;
+
+  const blogPostTemplate = require.resolve(`./src/templates/article.js`)
+  const result = await graphql(`
+    {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 1000
+      ) {
+        edges {
+          node {
+            frontmatter {
+              slug
             }
           }
-        }
-      `
-  )
-
+        } 
+      }
+    }
+  `)
+  // Handle errors
   if (result.errors) {
-    throw result.errors
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
   }
-
-  // Create blog articles pages.
-  const articles = result.data.articles.edges
-  articles.forEach((article, index) => {
-    let articleUrl = slugify(article.node.title, { locale: 'he' });
-    articleUrl = articleUrl === '' ? article.node.title.replace(/\s/g, '-') : articleUrl;
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-
-      path: `/article/${articleUrl}`,
-      component: require.resolve("./src/templates/article.js"),
+      path: node.frontmatter.slug,
+      component: blogPostTemplate,
       context: {
-        id: article.node.strapiId,
+        // additional data can be passed via context
+        slug: node.frontmatter.slug,
       },
     })
   })

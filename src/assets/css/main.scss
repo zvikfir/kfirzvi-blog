@@ -1,12 +1,19 @@
 body {
-  direction: rtl;
-  text-align: right;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
 
+// #logo-img {
+//   height: 300px;
+// }
+
 #logo-img {
-  height: 300px;
+  transition: all ease-in-out 0.3s;
+}
+
+#logo-img:hover {
+  transition: all ease-in-out 0.3s;
+  transform: scale(1.5);
 }
 
 main,
@@ -36,3 +43,9 @@ header {
   background-color: transparent;
 }
 
+blockquote {
+  background-color: rgb(235, 235, 235);
+  padding: 10px 20px 5px 20px;
+  border-left: 5px solid rgb(209, 209, 209);
+  border-radius: 5px;
+}

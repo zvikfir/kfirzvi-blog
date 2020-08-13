@@ -1,74 +1,63 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import ReactMarkdown from "react-markdown"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism"
-import { Card, Image } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import { ArticleSubtitle } from "../components/articleSubtitle"
-import anonymousPicture from "../images/anonymousPicture.svg"
+import { Helmet } from 'react-helmet'
 
-export const query = graphql`
-  query ArticleQuery($id: Int!) {
-    strapiArticle(strapiId: { eq: $id }) {
-      strapiId
-      title
-      content
-      authors {
-        name
-        picture {
-          publicURL
-        }
-      }
-      created_at
-    }
-  }
-`
-
-const Article = ({ data }) => {
-  const article = data.strapiArticle
-
-  const preTagRenderer = ({ language, value }) => (
-    <SyntaxHighlighter language={"python"} style={darcula} showLineNumbers>
-      {value}
-    </SyntaxHighlighter>
-  )
-
-  const authorImageSrc =
-    Boolean(article.authors.length) && article.authors[0].picture
-      ? article.authors[0].picture.publicURL
-      : anonymousPicture
-
+export default function Article({
+  data, // this prop will be injected by the GraphQL query below.
+}) {
+  const { markdownRemark } = data // data.markdownRemark holds your post data
+  const { frontmatter, html } = markdownRemark
   return (
     <Layout>
+      <Helmet>
+        <script>
+          {`window.MathJax = {
+            tex: {
+              inlineMath: [['$', '$']]
+            },
+            svg: {
+              fontCache: 'global'
+            }
+          }`}
+        </script>
+        <script type="text/javascript" id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
+      </Helmet>
       <Card className="p-4">
         <Card.Title as="h1" className="mb-5">
-          {article.title}
+          {frontmatter.title}
         </Card.Title>
         <Card.Subtitle as="h5" className="d-flex flex-row">
-          <div>
-            <Image
-              src={authorImageSrc}
-              style={{ width: 75, height: 75 }}
-              className="rounded-circle"
-            />
-          </div>
           <div className="pr-3">
-            <ArticleSubtitle article={article} />
+            <ArticleSubtitle article={frontmatter} />
           </div>
         </Card.Subtitle>
         <hr />
         <Card.Body>
-          <ReactMarkdown
-            source={article.content}
-            renderers={{
-              code: preTagRenderer,
-            }}
-          />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
         </Card.Body>
       </Card>
-    </Layout>
+    </Layout >
   )
 }
 
-export default Article
+export const pageQuery = graphql`
+  query($slug: String!) {
+    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        slug
+        title
+        authors {
+          name
+        }
+        intro
+      }
+    }
+  }
+`
