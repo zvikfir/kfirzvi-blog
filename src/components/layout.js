@@ -6,7 +6,7 @@ import Header from "./header"
 
 const Layout = ({ children }) => {
   return (
-    <Container id="layout">
+    <Container>
       <Header />
       <main>{children}</main>
       <footer className="text-center my-3">

@@ -56,7 +56,12 @@ module.exports = {
             },
           },
           `gatsby-remark-autolink-headers`,
-          "gatsby-remark-embed-video",
+          {
+            resolve: "gatsby-remark-embed-video",
+            options: {
+              containerClass: 'embed-video-container'
+            }
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
