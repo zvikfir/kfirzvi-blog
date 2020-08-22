@@ -1,12 +1,12 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-// #logo-img {
-//   height: 300px;
-// }
+a, a:hover {
+  color: rgb(0, 0, 165);
+}
 
 #logo-img {
   transition: all ease-in-out 0.3s;
@@ -17,13 +17,16 @@ body {
   transform: scale(1.5);
 }
 
-main,
-header {
-  width: 100%;
+main {
+  width: 80%;
+  margin: auto;
+}
+
+.about-me-paragraph {
+  font-size: 20px;
 }
 
 .article {
-  // width: 30%;
   min-height: 300px;
 
   a {
@@ -32,12 +35,33 @@ header {
     &:hover {
       text-decoration: none;
     }
-
   }
 }
 
+.article-body {
+  ul li p {
+    margin-bottom: 0;
+  }
+}
+
+.article-card {
+  box-shadow: 0 0 8px #aaaaaa;
+}
+
+header h1 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 50px;
+}
+
 .header-jumbo {
-  background-color: transparent;
+  // background: rgb(216, 238, 232);
+  background: rgb(229, 248, 255);
+  // background: rgb(0, 0, 0);
+  // background: linear-gradient(
+  //   180deg,
+  //   rgb(216, 238, 232) 0%,
+  //   rgba(255, 255, 255, 1) 100%
+  // );
 }
 
 blockquote {
@@ -49,4 +73,10 @@ blockquote {
 
 .embed-video-container iframe {
   max-width: 100%;
+}
+
+.embed-video-container {
+  margin: auto;
+  display: flex;
+  justify-content: center;
 }

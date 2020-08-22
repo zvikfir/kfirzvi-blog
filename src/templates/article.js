@@ -13,22 +13,23 @@ export default function Article({
   return (
     <Layout>
       <Helmet>
-        <script>
-          {`window.MathJax = {
+        {`<script>
+          window.MathJax = {
             tex: {
               inlineMath: [['$', '$']]
             },
             svg: {
               fontCache: 'global'
             }
-          }`}
-        </script>
+          }
+          </script>`}
+        <title>{`${data.site.siteMetadata.title} - ${frontmatter.title}`}</title>
         <script type="text/javascript" id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
         </script>
       </Helmet>
-      <Card className="p-4">
-        <Card.Title as="h1" className="mb-5">
+      <Card className="p-4 article-card">
+        <Card.Title as="h1" className="mb-5 article-title">
           {frontmatter.title}
         </Card.Title>
         <Card.Subtitle as="h5" className="d-flex flex-row">
@@ -37,7 +38,7 @@ export default function Article({
           </div>
         </Card.Subtitle>
         <hr />
-        <Card.Body>
+        <Card.Body className="article-body">
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </Card.Body>
       </Card>
@@ -47,6 +48,11 @@ export default function Article({
 
 export const pageQuery = graphql`
   query($slug: String!) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       html
       frontmatter {
@@ -56,7 +62,6 @@ export const pageQuery = graphql`
         authors {
           name
         }
-        intro
       }
     }
   }

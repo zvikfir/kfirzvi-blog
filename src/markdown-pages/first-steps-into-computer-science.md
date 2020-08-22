@@ -2,7 +2,6 @@
 slug: "first-steps-into-computer-science"
 date: "2020-08-14"
 title: "First Steps Into Computer Science"
-intro: "This is an intro"
 authors: [{
     name: 'Kfir Zvi'
 }]

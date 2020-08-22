@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: ``,
+    title: `Kfir Zvi's Blog`,
     // description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     // author: `@gatsbyjs`,
   },
@@ -12,6 +12,16 @@ module.exports = {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          'permanent marker',
+          'Noto Sans JP\:300',
+        ],
+        display: 'swap'
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -38,11 +48,10 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo.png`, // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-sass',
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -68,7 +77,7 @@ module.exports = {
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
-              maxWidth: 400,
+              maxWidth: 600,
             },
           },
           `gatsby-remark-mathjax`,
