@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Card } from "react-bootstrap"
 import { ArticleSubtitle } from "../components/articleSubtitle"
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet"
 
 export default function Article({
   data, // this prop will be injected by the GraphQL query below.
@@ -23,10 +23,21 @@ export default function Article({
             }
           }
           </script>`}
+        <div id="fb-root"></div>
+        <script
+          async
+          defer
+          crossorigin="anonymous"
+          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=719431901980076"
+          nonce="sZdLaLo9"
+        ></script>
         <title>{`${data.site.siteMetadata.title} - ${frontmatter.title}`}</title>
-        <script type="text/javascript" id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-        </script>
+        <script
+          type="text/javascript"
+          id="MathJax-script"
+          async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+        ></script>
       </Helmet>
       <Card className="p-4 article-card">
         <Card.Title as="h1" className="mb-5 article-title">
@@ -42,7 +53,13 @@ export default function Article({
           <div dangerouslySetInnerHTML={{ __html: html }} />
         </Card.Body>
       </Card>
-    </Layout >
+      <div
+        className="fb-comments"
+        data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+        data-numposts="5"
+        data-width=""
+      ></div>
+    </Layout>
   )
 }
 
