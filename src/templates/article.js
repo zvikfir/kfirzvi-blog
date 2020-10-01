@@ -28,8 +28,8 @@ export default function Article({
           async
           defer
           crossorigin="anonymous"
-          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=719431901980076"
-          nonce="sZdLaLo9"
+          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=719431901980076&autoLogAppEvents=1"
+          nonce="sQdAREkp"
         ></script>
         <title>{`${data.site.siteMetadata.title} - ${frontmatter.title}`}</title>
         <script
@@ -55,7 +55,7 @@ export default function Article({
       </Card>
       <div
         className="fb-comments"
-        data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+        data-href="https://blog.kfirzvi.co.il/"
         data-numposts="5"
         data-width=""
       ></div>
